@@ -163,11 +163,10 @@ h1 {
 
 /* Technologies */
 .tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
-  max-width: 700px;
-  margin: 0 auto;
 }
 
 .tech-card {
@@ -178,12 +177,21 @@ h1 {
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
+  flex: 0 0 120px;
 }
 
 .tech-card:hover {
   transform: translateY(-5px);
   border-color: var(--accent-cyan);
   box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+  background-color: #b6f4ff7e;
+}
+
+.tech-card.simulated-hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+    background-color: #b6f4ff7e;
 }
 
 .tech-card img {
@@ -193,6 +201,10 @@ h1 {
 
 .tech-card:hover img {
   transform: scale(1.1);
+}
+
+.tech-card.simulated-hover img {
+    transform: scale(1.1);
 }
 
 .tech-card h3 {
@@ -448,21 +460,31 @@ h1 {
   color: var(--text-secondary);
 }
 
-.github-link {
+.github-link,
+.cv-link {
   color: var(--text-secondary);
   transition: all 0.3s ease;
   display: inline-flex;
 }
 
-.github-link:hover {
+.github-link:hover,
+.cv-link:hover {
   color: var(--accent-cyan);
   transform: scale(1.1);
 }
-.github-link svg {
+.github-link svg,
+.cv-link svg {
   width: 20px;
   height: 20px;
   margin-right: 8px;
   fill: currentColor;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
 /* General link styles for consistency */
@@ -475,6 +497,11 @@ a {
 a:hover {
   color: var(--accent-cyan);
   text-decoration: underline;
+}
+
+/* Contact Section */
+.contact-section {
+  margin-bottom: 10px;
 }
 
 /* Responsive */

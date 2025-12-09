@@ -53,13 +53,16 @@ const observer = new IntersectionObserver((entries) => {
 
 // Aplicar animaciones de entrada
 document.addEventListener("DOMContentLoaded", () => {
-  // Animar tech cards
+  // Animar tech cards inmediatamente con retrasos escalonados
   const techCards = document.querySelectorAll(".tech-card")
-  techCards.forEach((card) => {
+  techCards.forEach((card, index) => {
     card.style.opacity = "0"
     card.style.transform = "translateY(30px)"
     card.style.transition = "all 0.6s ease"
-    observer.observe(card)
+    setTimeout(() => {
+      card.style.opacity = "1"
+      card.style.transform = "translateY(0)"
+    }, 700 + index * 100)
   })
 
   // Animar project cards
@@ -112,30 +115,22 @@ window.addEventListener("scroll", () => {
   })
 })
 
-// Smooth scroll para enlaces internos (si los añades)
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault()
-    const target = document.querySelector(this.getAttribute("href"))
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-    }
-  })
-})
-
-// Efecto de "código escribiéndose" en las tech cards
+// Simular hover secuencial en tech-cards
 const techCards = document.querySelectorAll(".tech-card")
-techCards.forEach((card) => {
-  card.addEventListener("mouseenter", function () {
-    const tech = this.getAttribute("data-tech")
-    console.log(`[v0] Tech skill: ${tech}`)
-  })
-})
+let currentIndex = 0;
 
-// Añadir efecto de matriz en el fondo (opcional)
+setInterval(() => {
+    // Remover la clase de simulación del anterior
+    techCards.forEach(card => card.classList.remove('simulated-hover'));
+    
+    // Añadir la clase al actual
+    techCards[currentIndex].classList.add('simulated-hover');
+    
+    // Avanzar al siguiente índice
+    currentIndex = (currentIndex + 1) % techCards.length;
+}, 2000);
+
+// Añadir efecto de matriz en el fondo
 function createMatrixEffect() {
   const canvas = document.createElement("canvas")
   canvas.style.position = "fixed"
@@ -182,26 +177,7 @@ function createMatrixEffect() {
     canvas.height = window.innerHeight
   })
 }
-
-// Descomentar para activar el efecto matriz
-// createMatrixEffect();
-
-// Añadir partículas en el cursor (efecto opcional)
-const particles = []
-
-document.addEventListener("mousemove", (e) => {
-  // Crear partícula ocasionalmente
-  if (Math.random() > 0.9) {
-    particles.push({
-      x: e.clientX,
-      y: e.clientY,
-      size: Math.random() * 3 + 1,
-      speedX: (Math.random() - 0.5) * 2,
-      speedY: (Math.random() - 0.5) * 2,
-      life: 1,
-    })
-  }
-})
+createMatrixEffect();
 
 // Console log personalizado
 console.log("%c¡Holaaa!", "color: #64ffda; font-size: 20px; font-weight: bold;")
