@@ -115,21 +115,6 @@ window.addEventListener("scroll", () => {
   })
 })
 
-// Simular hover secuencial en tech-cards
-const techCards = document.querySelectorAll(".tech-card")
-let currentIndex = 0;
-
-setInterval(() => {
-    // Remover la clase de simulación del anterior
-    techCards.forEach(card => card.classList.remove('simulated-hover'));
-    
-    // Añadir la clase al actual
-    techCards[currentIndex].classList.add('simulated-hover');
-    
-    // Avanzar al siguiente índice
-    currentIndex = (currentIndex + 1) % techCards.length;
-}, 2000);
-
 // Añadir efecto de matriz en el fondo
 function createMatrixEffect() {
   const canvas = document.createElement("canvas")

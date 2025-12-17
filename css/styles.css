@@ -164,54 +164,31 @@ h1 {
 /* Technologies */
 .tech-grid {
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.tech-category {
+  display: grid;
   grid-template-columns: repeat(8, 1fr);
-  justify-content: center;
   gap: 20px;
-  max-width: 100%;
 }
 
 .tech-card {
-  background: var(--bg-darker);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  flex: 0 0 120px;
 }
 
-.tech-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent-cyan);
-  box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
-  background-color: #b6f4ff7e;
-}
-
-.tech-card.simulated-hover {
-    transform: translateY(-5px);
-    border-color: var(--accent-cyan);
-    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
-    background-color: #b6f4ff7e;
-}
-
-.tech-card img {
-  margin-bottom: 10px;
-  transition: transform 0.3s ease;
-}
-
-.tech-card:hover img {
-  transform: scale(1.1);
-}
-
-.tech-card.simulated-hover img {
-    transform: scale(1.1);
-}
-
-.tech-card h3 {
-  font-size: 0.9rem;
-  color: var(--text-primary);
+.tech-category-title {
+  grid-column: 1 / -1;
+  font-size: 1.2rem;
+  color: var(--accent-cyan);
+  margin-bottom: 15px;
   font-weight: 600;
+  border-bottom: 2px solid var(--accent-cyan);
+  padding-bottom: 10px;
 }
 
 /* Timeline */
@@ -513,6 +490,12 @@ a:hover {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .tech-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 13px;
@@ -526,14 +509,18 @@ a:hover {
     font-size: 1.5rem;
   }
 
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .tech-category {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+
   .timelines-wrapper {
     grid-template-columns: 1fr;
     gap: 40px;
-  }
-
-  .tech-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 15px;
   }
 
   .projects-grid {
