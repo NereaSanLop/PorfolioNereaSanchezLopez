@@ -53,6 +53,18 @@ const observer = new IntersectionObserver((entries) => {
 
 // Aplicar animaciones de entrada
 document.addEventListener("DOMContentLoaded", () => {
+  const forteDate = document.getElementById("forte-date")
+  if (forteDate) {
+    const startYear = 2026
+    const startMonth = 1 // Febrero en base 0
+    const today = new Date()
+    const monthDiff = (today.getFullYear() - startYear) * 12 + (today.getMonth() - startMonth)
+    const months = Math.max(0, monthDiff + 1)
+    const label = months === 1 ? "mes" : "meses"
+
+    forteDate.textContent = `2026 - ${months} ${label} (Actualidad)`
+  }
+
   // Animar tech cards inmediatamente con retrasos escalonados
   const techCards = document.querySelectorAll(".tech-card")
   techCards.forEach((card, index) => {
